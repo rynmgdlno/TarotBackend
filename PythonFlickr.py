@@ -11,10 +11,11 @@ CORS(app)
 
 api_cors_config = {
     "origins": ["https://tarot-270605.web.app"]
-    }
-CORS(app, resources = {"/api/v1/*": api_cors_config})
-@app.route('/', methods=["GET"])
+}
+CORS(app, resources={"/api/v1/*": api_cors_config})
 
+
+@app.route('/', methods=["GET"])
 def tarot():
     api_key = ''
     query = request.args.get('query')
@@ -72,6 +73,6 @@ def tarot():
     print(jsonify(page, pages, image_palettes_all))
     return jsonify(page, pages, image_palettes_all)
 
+
 if __name__ == '__main__':
     app.run()
-
