@@ -1,15 +1,20 @@
 from flask import Flask
 from flask import request, jsonify
+from flask_cors import CORS
 import requests
 from io import BytesIO
 from PIL import Image
 import random
 
 app = Flask(__name__)
-app.config["DEBUG"] = False
+CORS(app)
 
-
+api_cors_config = {
+    "origins": ["https://tarot-270605.web.app"]
+    }
+CORS(app, resources = {"/api/v1/*": api_cors_config})
 @app.route('/', methods=["GET"])
+
 def tarot():
     api_key = '3ea4ad15f78cd2962c589daa3fec5f75'
     query = request.args.get('query')
@@ -67,5 +72,6 @@ def tarot():
     print(jsonify(page, pages, image_palettes_all))
     return jsonify(page, pages, image_palettes_all)
 
+if __name__ == '__main__':
+    app.run()
 
-app.run()
