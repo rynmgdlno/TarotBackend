@@ -16,7 +16,7 @@ CORS(app, resources = {"/api/v1/*": api_cors_config})
 @app.route('/', methods=["GET"])
 
 def tarot():
-    api_key = '3ea4ad15f78cd2962c589daa3fec5f75'
+    api_key = ''
     query = request.args.get('query')
     page = request.args.get('page')
     URL = f'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key={api_key}&tags={query}&page={page}&tag_mode=all&extras=url_s&per_page=20&format=json&nojsoncallback=1'
